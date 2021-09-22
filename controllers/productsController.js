@@ -2,29 +2,7 @@ const mongoose = require("mongoose");
 const Products = require("../models/productModel");
 const AppError = require("../utilies/AppError");
 
-exports.checkFields = async (req, res, next) => {
-  req.query.fields =
-    "name,price,images,colors,company,description,category,shipping";
 
-  next();
-};
-
-class APIFeatures {
-  constructor(query, queryString) {
-    this.query = query;
-    this.queryString = queryString;
-  }
-
-  limitedFields() {
-    if (this.queryString.fields) {
-      const fields = this.queryString.fields.split(",").join(" ");
-      this.query = this.query.select(fields);
-    } else {
-      this.query = this.query.query.select("-__v");
-    }
-    return this;
-  }
-}
 
 exports.getAllProducts = async (req, res) => {
   try {
@@ -36,7 +14,6 @@ exports.getAllProducts = async (req, res) => {
     // const products = await features.query;
 
     //Aggregation
-
     const products = await Products.aggregate([
       {
         $unwind: "$images",
@@ -64,11 +41,7 @@ exports.getAllProducts = async (req, res) => {
       },
     });
   } catch (err) {
-    console.log(err);
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
+    next(err)
   }
 };
 
