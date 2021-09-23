@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
 
 // Routers
 const productRouter = require("./routes/productRoutes");
@@ -8,6 +9,11 @@ const userRouter = require('./routes/userRoutes');
 // Errors
 const AppError = require("./utilies/AppError");
 const globalErrorHandler = require("./controllers/errorController");
+
+app.use(cors({
+  credentials: 'include',
+  origin: '*'
+}));
 
 app.use(express.json());
 
