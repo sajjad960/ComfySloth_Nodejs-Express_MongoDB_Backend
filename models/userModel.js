@@ -62,6 +62,12 @@ userSchema.pre('save', async function(next) {
     next()
 })
 
+userSchema.methods.currectPassword = async function (
+    candidatePassword, userPassword
+) {
+    return await bcrypt.compare(candidatePassword, userPassword);
+}
+
 
 const Users = mongoose.model('Users', userSchema)
 

@@ -1,10 +1,4 @@
-const AppError = require("../utilies/AppError")
-
-const isDocumentsAvailable = function (doc, next) {
-    if(!doc) {
-        return new AppError('No document found with that ID', 404)
-    }
-}
+const AppError = require("../utilies/AppError");
 
 exports.createOne = (Model) => async (req, res, next) => {
     try {
@@ -26,7 +20,9 @@ exports.getOne = (Model) => async (req, res, next) => {
     try {
         const doc = await Model.findById(req.params.id)
 
-        isDocumentsAvailable(doc)
+        if (!doc) {
+            return next(new AppError('No document found with that ID', 404));
+          }
 
         res.status(200).json({
             status: 'success',
@@ -39,14 +35,17 @@ exports.getOne = (Model) => async (req, res, next) => {
     }
 }
 
-exports.updateOne = (Model) => (req, res, next) => {
+exports.updateOne = (Model) => async (req, res, next) => {
     try {
         const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true,
         })
 
-        isDocumentsAvailable(doc)
+  
+        if (!doc) {
+            return next(new AppError('No document found with that ID', 404));
+          }
 
         res.status(200).json({
             status: 'success',
@@ -61,8 +60,14 @@ exports.updateOne = (Model) => (req, res, next) => {
 
 exports.deleteOne = (Model) => async (req,res,next) => {
     try {
-        
-    } catch (error) {
-        
+        const doc = await Model.findByIdAndDelete(req.params.id);
+
+        if (!doc) {
+            return next(new AppError('No document found with that ID', 404));
+          }
+
+        res.send('Document successfully deleted!')
+    } catch (err) {
+        next(err)
     }
 }
