@@ -14,6 +14,8 @@ router.use(authController.protect)
 
 router.get('/me', userController.getMe, userController.getUser)
 
+// Only available for admin
+router.use(authController.restrictTo('admin'))
 
 router.route('/').get(userController.getAllUsers).post(userController.createUser);
 router.route('/:id').get(userController.getUser).patch(userController.updateUser).delete(userController.deleteUser);
