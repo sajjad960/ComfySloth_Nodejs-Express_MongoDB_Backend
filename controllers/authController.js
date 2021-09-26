@@ -106,3 +106,15 @@ exports.restrictTo = (...roles) => (req, res, next) => {
     }
     next()
 }
+
+exports.forgotPassword = async (req, res, next) => {
+    try {
+        // 1) Get user based on posted email
+
+        // 2) Generate the random reset token
+
+        // 3) Send it to user's email
+    } catch (err) {
+        next(err)
+    }
+}
