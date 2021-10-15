@@ -1,5 +1,4 @@
-
-<!doctype html>
+const emailTemplate = `<!doctype html>
 <html lang="en-US">
 
 <head>
@@ -77,4 +76,7 @@
     <!--/100% body table-->
 </body>
 
-</html>
+</html>`
+
+
+module.exports = emailTemplate

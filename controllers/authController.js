@@ -13,8 +13,10 @@ const signToken = (id) =>
 const createSendToken = (user, statusCode, req, res) => {
     const token = signToken(user._id)
 
-    // Remove password from output
+    // Remove some feild from output
     user.password = undefined,
+    user.passwordResetExpires = undefined,
+    user.passwordResetToken = undefined
 
     res.status(statusCode).json({
         status: 'success',
@@ -122,15 +124,16 @@ exports.forgotPassword = async (req, res, next) => {
         await user.save({validateBeforeSave: false})
 
         // 3) Send it to user's email
-        const resetURL = `${req.protocol}://${req.get('host')}/api/v1/users/resetPassword/${resetToken}`
+        const resetURL = `http://localhost:3000/resetPassword/${resetToken}`
 
+        // message not using right now.
         const message = `Forgot your password ? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didn't forget your password please ignore this message`;
 
         try {
             await sendMail({
                 email: user.email,
                 subject: 'Your password reset token (valid for 10 min)',
-                message,
+                resetURL,
             })
 
             res.status(200).json({
