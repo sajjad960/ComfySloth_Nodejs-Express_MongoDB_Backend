@@ -3,7 +3,7 @@ const Product = require('../models/productModel');
 const factory = require('./handleFactory');
 const AppError = require('./../utilies/AppError');
 
-exports.getCheckoutSession = async (req, res, next) => {
+exports.getCheckoutSessionSingleProduct = async (req, res, next) => {
     try {
         // 1) Get the currently ordered Product
     const product = await Product.findById(req.params.productId);
@@ -36,4 +36,15 @@ exports.getCheckoutSession = async (req, res, next) => {
         next(error)
     }
     
+}
+
+
+exports.getCheckoutCart = async (req, res, next) => {
+    try {
+        // 1) Get the currently ordered Product
+        
+        
+    } catch (error) {
+        next(error)
+    }
 }
