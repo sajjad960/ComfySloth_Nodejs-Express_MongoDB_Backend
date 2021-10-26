@@ -6,6 +6,7 @@ const cors = require('cors');
 const productRouter = require("./routes/productRoutes");
 const userRouter = require('./routes/userRoutes');
 const subscriberRouter = require('./routes/subscriberRoutes');
+const orderRouter = require('./routes/orderRoutes')
 
 
 // Errors
@@ -28,6 +29,7 @@ app.use((req, res, next) => {
 app.use("/api/v1/store-products", productRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/subcribers', subscriberRouter)
+app.use('/api/v1/order', orderRouter)
 
 app.all("*", (req, res, next) => {
   next(new AppError(`can't find ${req.originalUrl} on this server`, 404));
