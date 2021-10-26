@@ -123,10 +123,17 @@ exports.forgotPassword = async (req, res, next) => {
         const resetToken = user.createPasswordResetToken();
         await user.save({validateBeforeSave: false})
 
+        let resetURL;
         // 3) Send it to user's email
-        const resetURL = `http://localhost:3000/resetPassword/${resetToken}`
+        if(process.env.NODE_ENV === 'development') {
+            resetURL = `http://localhost:3000/resetPassword/${resetToken}`;
 
-        // message not using right now.
+        } else if(process.env.NODE_ENV === 'production') {
+
+            resetURL = `${process.env.HOST_ADDRESS}//localhost:3000/resetPassword/${resetToken}`;
+        }
+
+        // this message not using right now.
         const message = `Forgot your password ? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didn't forget your password please ignore this message`;
 
         try {
