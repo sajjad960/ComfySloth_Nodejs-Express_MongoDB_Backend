@@ -54,8 +54,6 @@ exports.getCheckoutCart = async (req, res, next) => {
             }
         })
 
-        console.log(products);
-
         // 2) create checkout session
 
         const session = await stripe.checkout.sessions.create({
@@ -66,7 +64,7 @@ exports.getCheckoutCart = async (req, res, next) => {
         // client_reference_id: req.params.productId,
         line_items: products
     })
-    console.log(session);
+   
     // 3) Create session as responce
     res.status(200).json({
         status: 'success',
