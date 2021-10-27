@@ -42,9 +42,38 @@ exports.getCheckoutSessionSingleProduct = async (req, res, next) => {
 exports.getCheckoutCart = async (req, res, next) => {
     try {
         // 1) Get the currently ordered Product
-        
+        //right now i am not checking if the product exist
+       
+        let products = req.body.cart.map(product => {
+            return {
+                name: `${product.name} Product`,
+                images: [`${product.image}`],
+                amount: product.price,
+                currency: 'usd',
+                quantity: product.amount
+            }
+        })
+
+        console.log(products);
+
+        // 2) create checkout session
+
+        const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        success_url: process.env.LOCAL_HOST_ADDRESS, // user redirect this link after payment success
+        cancel_url: process.env.LOCAL_HOST_ADDRESS,
+        customer_email: req.user.email,
+        // client_reference_id: req.params.productId,
+        line_items: products
+    })
+    console.log(session);
+    // 3) Create session as responce
+    res.status(200).json({
+        status: 'success',
+        session
+    })
         
     } catch (error) {
-        next(error)
+        console.log(error);
     }
 }
