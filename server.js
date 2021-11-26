@@ -19,8 +19,8 @@ const app = require("./app");
 //   })
 //   .then(() => console.log("DB connection successful"));
 
-console.log(process.env);
 // Local DB
+//env variable not working here
 mongoose.connect("mongodb://localhost:27017/comfy_sloth", {
     useNewUrlParser: true,
     useCreateIndex: true,
