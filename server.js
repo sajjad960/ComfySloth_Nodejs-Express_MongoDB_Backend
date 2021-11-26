@@ -19,12 +19,13 @@ const app = require("./app");
 //   })
 //   .then(() => console.log("DB connection successful"));
 
+console.log(process.env);
 // Local DB
-mongoose.connect(process.env.LOCAL_DATABASE, {
+mongoose.connect("mongodb://localhost:27017/comfy_sloth", {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-}).then(() => console.log("DB connection successful 😀"))
+}).then(() => console.log("DB connection successful"))
 
 
 const port = process.env.PORT || 5000;
