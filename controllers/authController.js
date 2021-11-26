@@ -126,11 +126,11 @@ exports.forgotPassword = async (req, res, next) => {
         let resetURL;
         // 3) Send it to user's email
         if(process.env.NODE_ENV === 'development') {
-            resetURL = `http://localhost:3000/resetPassword/${resetToken}`;
+            resetURL = `${process.env.LOCAL_HOST_ADDRESS}/resetPassword/${resetToken}`;
 
         } else if(process.env.NODE_ENV === 'production') {
 
-            resetURL = `${process.env.HOST_ADDRESS}//localhost:3000/resetPassword/${resetToken}`;
+            resetURL = `${process.env.HOST_ADDRESS}/resetPassword/${resetToken}`;
         }
 
         // this message not using right now.
