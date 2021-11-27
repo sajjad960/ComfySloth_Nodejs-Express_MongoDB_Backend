@@ -21,7 +21,7 @@ const app = require("./app");
 
 // Local DB
 //env variable not working here
-mongoose.connect("mongodb://localhost:27017/comfy_sloth", {
+mongoose.connect(process.env.LOCAL_DATABASE, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,

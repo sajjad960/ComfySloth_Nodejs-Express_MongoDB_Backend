@@ -56,14 +56,26 @@ exports.getCheckoutCart = async (req, res, next) => {
 
         // 2) create checkout session
 
-        const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        success_url: process.env.LOCAL_HOST_ADDRESS, // user redirect this link after payment success
-        cancel_url: process.env.LOCAL_HOST_ADDRESS,
-        customer_email: req.user.email,
-        // client_reference_id: req.params.productId,
-        line_items: products
-    })
+        if(process.env.NODE_ENV === 'development') {
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                success_url: process.env.LOCAL_HOST_ADDRESS, // user redirect this link after payment success
+                cancel_url: process.env.LOCAL_HOST_ADDRESS,
+                customer_email: req.user.email,
+                // client_reference_id: req.params.productId,
+                line_items: products
+            })
+        }
+        if(process.env.NODE_ENV === 'production') {
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                success_url: process.env.HOST_ADDRESS, // user redirect this link after payment success
+                cancel_url: process.env.HOST_ADDRESS,
+                customer_email: req.user.email,
+                // client_reference_id: req.params.productId,
+                line_items: products
+            })
+        }
    
     // 3) Create session as responce
     res.status(200).json({
