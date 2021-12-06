@@ -1,4 +1,4 @@
-# ComfySloth
+# ComfySloth (MVC design pattern)
 [Live Link](https://comfysloth.findsajjad.com/)
 ### It's a MERN stack e-commerce website with stripe payment gateway.
 
