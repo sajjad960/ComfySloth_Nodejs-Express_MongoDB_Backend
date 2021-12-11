@@ -12,6 +12,8 @@
 * User Login with Token.
 * User subscribe.
 * Stripe payment with session token.
+#### Database
+Local MongoDB
 
 ## Installation and start
 Right now, No data gonna get with req. Because Mongoose gonna connect with local MongoDB server.
