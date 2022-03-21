@@ -1,7 +1,11 @@
 const express = require("express");
 const app = express();
+
+//security
 const cors = require('cors');
-const xss = require('xss-clean')
+const xss = require('xss-clean');
+const hpp = require('hpp');
+
 
 //testing
 console.log('Testing');
