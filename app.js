@@ -3,7 +3,8 @@ const app = express();
 const cors = require('cors');
 const xss = require('xss-clean')
 
-
+//testing
+console.log('Testing');
 
 // Routers
 const productRouter = require("./routes/productRoutes");
