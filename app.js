@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require('cors');
+const xss = require('xss-clean')
 
 // Routers
 const productRouter = require("./routes/productRoutes");
