@@ -5,10 +5,9 @@ const app = express();
 const cors = require('cors');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const mongoSanitize = require('hpp');
 
 
-//testing
-console.log('Testing');
 
 // Routers
 const productRouter = require("./routes/productRoutes");
@@ -32,6 +31,22 @@ app.use((req, res, next) => {
   console.log("hello from middleware");
   next();
 });
+
+// Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+
+// Data sanitization against XSS
+app.use(xss());
+
+// Prevent parameter pollution
+app.use(
+  hpp(
+  //   {
+  //   whitelist: ['duration'], // declare here all witelisted feild
+  // }
+  )
+);
+
 
 //Routes
 app.use("/api/v1/store-products", productRouter);
