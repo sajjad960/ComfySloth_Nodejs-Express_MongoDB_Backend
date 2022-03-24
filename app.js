@@ -25,7 +25,7 @@ app.use(cors({
   origin: '*'
 }));
 
-app.use(express.json());
+app.use(express.json({ limit: '10kb' }));
 
 app.use((req, res, next) => {
   console.log("hello from middleware");
