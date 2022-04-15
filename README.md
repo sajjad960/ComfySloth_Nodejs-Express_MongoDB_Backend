@@ -3,6 +3,7 @@
 ### It's a MERN stack e-commerce website with stripe payment gateway.
 
 ## Features
+* Secure application (Compromised Database, Cross-site-scripting, DOS with body payload, NOSQL query injection, Parameter pollution and more).
 * Geting All Products and Single Product.
 * Signup.
 * Login.
