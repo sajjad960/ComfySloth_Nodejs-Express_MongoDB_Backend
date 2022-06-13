@@ -1,1 +1,1 @@
-Need to work on , passwordResetAt authcontroller 
+Convert all Try Catch into a single function. 

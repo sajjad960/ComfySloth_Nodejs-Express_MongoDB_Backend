@@ -2,6 +2,9 @@
 [Live Link](https://comfysloth.findsajjad.com/)
 ### It's a MERN stack e-commerce website with stripe payment gateway.
 
+# Documentation
+Working on Swagger documentation, Please wait for update. :(
+
 ## Features
 * Secure application (Compromised Database, Cross-site-scripting, DOS with body payload, NOSQL query injection, Parameter pollution and more).
 * Geting All Products and Single Product.
@@ -26,5 +29,5 @@ npm start
 Frontend repo link -> https://github.com/sajjad960/Comfysloth_ReactFrontend-Ecommerce
 
 ### Deployed Tools
-Cloud(Ubuntu) - Digitalocean<br />
+Cloud Sever (Ubuntu) - Digitalocean<br />
 Webserver - NGINX

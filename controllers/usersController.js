@@ -1,20 +1,25 @@
 const Users = require('../models/userModel');
 const AppError = require("../utilies/AppError");
+const APIFeatures = require("../utilies/apiFeatures")
 
 // Factory controller
 const factory = require('../controllers/handleFactory')
 
-exports.getAllUsers = async (req, res,next) => {
+exports.getAllUsers = async (req, res, next) => {
     try {
-        const users = await Users.find();
+        const features = new APIFeatures(Model.find(), req.query)
+            .filter()
+            .sort()
+            .limitFields()
+            .paginate();
+        // const doc = await features.query.explain();
+        const doc = await features.query;
 
         // send responce
         res.status(200).json({
             status: 'success',
-            results: users.length,
-            data: {
-                users
-            }
+            results: doc.length,
+            data: doc
         })
     } catch (error) {
         next(err);
