@@ -13,11 +13,11 @@
     "basePath": "/api/v1",
     "tags": [
         {
-            "name": "Users",
-            "description": "API for users in the system"
+            "name": "Products",
+            "description": "API for products in the system"
         },
         {
-            "name": "check",
+            "name": "Users",
             "description": "API for users in the system"
         }
     ],
@@ -31,6 +31,54 @@
         "application/json"
     ],
     "paths": {
+        "/store-products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get All Products",
+                "responses": {
+                    "200": {
+                        "status": "Success",
+                        "results": "Number",
+                        "data": {
+                            "products": "Array"
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    }
+                }
+            }
+        },
+        "/store-products/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get product by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the product",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "status": "Success",
+                        "data": {
+                            "product": "Array"
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    }
+                }
+            }
+        },
         "/users": {
             "post": {
                 "tags": [
@@ -44,7 +92,7 @@
                         "in": "body",
                         "description": "User that we want to create",
                         "schema": {
-                            "$ref": "#/definitions/User"
+                            "$ref": "#/definitions/UserViewModel"
                         }
                     }
                 ],
@@ -73,7 +121,9 @@
                         }
                     }
                 }
-            },
+            }
+        },
+        "/users/{id}": {
             "put": {
                 "tags": [
                     "Users"
@@ -95,31 +145,6 @@
                         "description": "Success",
                         "schema": {
                             "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/{id}": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "summary": "Get user by id",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id of the user",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/UserViewModel"
                         }
                     }
                 }
@@ -147,47 +172,207 @@
                     }
                 }
             }
+        },
+        "/users/me": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Updates the user",
+                "responses": {
+                    "200": {
+                        "status": "success",
+                        "doc": "object",
+                        "schema": {
+                            "type": "string",
+                            "$ref": "#/definitions/UserViewModel"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
-        "User": {
+        "Product": {
             "required": [
-                "username"
+                "stock",
+                "price",
+                "name"
             ],
             "properties": {
-                "username": {
+                "stock": {
+                    "type": "number"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "shipping": {
+                    "type": "boolean"
+                },
+                "featured": {
+                    "type": "boolean"
+                },
+                "colors": {
+                    "type": "array"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "images": {
+                    "type": "array"
+                },
+                "reviews": {
+                    "type": "number"
+                },
+                "stars": {
+                    "type": "number"
+                },
+                "name": {
                     "type": "string",
-                    "pattern": "^[a-zA-Z0-9]*$",
-                    "minLength": 3,
-                    "maxLength": 30
+                    "unique": "boolean",
+                    "trim": "boolean"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "company": {
+                    "type": "string"
+                },
+                "userReviews": {
+                    "type": "array"
+                }
+            }
+        },
+        "User": {
+            "required": [
+                "name",
+                "email",
+                "password",
+                "passwordConfirm"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string",
+                    "unique": "boolean",
+                    "lowercase": "boolean",
+                    "validate": "boolean"
+                },
+                "photo": {
+                    "type": "string",
+                    "default": "default.jpg"
+                },
+                "role": {
+                    "type": "string",
+                    "default": "user"
+                },
+                "password": {
+                    "type": "string",
+                    "required": "boolean",
+                    "minlength": "boolean"
+                },
+                "passwordConfirm": {
+                    "type": "string",
+                    "validate": "boolean"
+                },
+                "passwordChangedAt": {
+                    "type": "date",
+                    "validate": "boolean"
+                },
+                "passwordResetToken": {
+                    "type": "String"
+                },
+                "passwordResetExpires": {
+                    "type": "date"
+                },
+                "active": {
+                    "type": "boolean",
+                    "default": "true"
                 }
             }
         },
         "UserViewModel": {
+            "required": [
+                "name",
+                "email",
+                "password",
+                "passwordConfirm"
+            ],
             "properties": {
-                "id": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
                     "type": "string",
+                    "unique": "boolean",
+                    "lowercase": "boolean",
+                    "validate": "boolean"
+                },
+                "photo": {
+                    "type": "string",
+                    "default": "default.jpg"
+                },
+                "role": {
+                    "type": "string",
+                    "default": "user"
+                },
+                "password": {
+                    "type": "string",
+                    "required": "boolean",
+                    "minlength": "boolean"
+                },
+                "passwordConfirm": {
+                    "type": "string",
+                    "validate": "boolean"
+                }
+            }
+        },
+        "Order": {
+            "required": [
+                "product",
+                "user",
+                "price"
+            ],
+            "properties": {
+                "product": {
+                    "type": "is",
                     "examples": [
                         "5f8abd12a57f4e103cb4d302"
                     ]
                 },
-                "username": {
-                    "type": "string",
+                "user": {
+                    "type": "id",
                     "examples": [
-                        "u001"
+                        "5f8abd12a57f4e103cb4d302"
                     ]
                 },
                 "createdAt": {
-                    "type": "string",
+                    "type": "Date",
+                    "default": "Date.now",
                     "examples": [
                         "2020-10-17T09:44:50.543Z"
                     ]
+                },
+                "paid": {
+                    "type": "boolean",
+                    "default": "true"
                 }
             }
         },
-        "Users": {
-            "type": "array",
-            "$ref": "#/definitions/UserViewModel"
+        "subscriberModel": {
+            "required": [
+                "email"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "unique": "boolean",
+                    "lowercase": "boolean",
+                    "validate": "boolean"
+                }
+            }
         }
     }
 }
