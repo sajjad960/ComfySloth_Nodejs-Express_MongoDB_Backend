@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 
+// Swagger
+const swaggerUI = require("swagger-ui-express");
+
 //security
 const cors = require('cors');
 const xss = require('xss-clean');
@@ -41,9 +44,9 @@ app.use(xss());
 // Prevent parameter pollution
 app.use(
   hpp(
-  //   {
-  //   whitelist: ['duration'], // declare here all witelisted feild
-  // }
+    //   {
+    //   whitelist: ['duration'], // declare here all witelisted feild
+    // }
   )
 );
 
@@ -54,10 +57,17 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/subcribers', subscriberRouter)
 app.use('/api/v1/order', orderRouter)
 
+// Swagger route open with data
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+
+
 app.all("*", (req, res, next) => {
   next(new AppError(`can't find ${req.originalUrl} on this server`, 404));
 });
 
 app.use(globalErrorHandler);
+
+
 
 module.exports = app;
