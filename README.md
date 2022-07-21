@@ -1,6 +1,6 @@
 # ComfySloth - Demo mini-scale ecommerce website (Backend). 
 ### Documentation (Swagger)
-  For API documentation, Please run this application and hit this route from any brawser. 
+  For API documentation, Please run this application and hit this route from any browser. 
  (http://localhost:9000/api-docs) 
  > It's not fully completed yet. 
 ### Features
