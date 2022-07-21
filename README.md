@@ -31,3 +31,38 @@ Frontend repo link -> https://github.com/sajjad960/Comfysloth_ReactFrontend-Ecom
 ### Deployed Tools
 Cloud Sever (Ubuntu) - Digitalocean<br />
 Webserver - NGINX
+
+
+# ComfySloth - Demo mini-scale ecommerce website (Backend). 
+### Documentation (Swagger)
+  For API documentation, Please run this application and hit this route from any brawser. 
+ (http://localhost:9000/api-docs) 
+ > It's not fully completed yet. 
+### Features
+* Authentication and Authorization. 
+* Products Management. 
+* Payment. 
+* Password Reset. 
+* Little bit application Security. 
+* Swagger Documentation 
+### Requirements 
+* Node v14+ 
+* npm 
+### Step 1: Clone the repo 
+``` 
+git clone 
+cd 
+``` 
+### Step 2: Start the server 
+install packages: run this command 
+``` 
+npm i 
+``` 
+Start this application: Note: I am working on production and deployment commad, I will add it as soon as possible.😊 
+``` 
+npm start
+```
+### Generate dummy data For generate dummy data 
+ ``` 
+ node data/import-data.js 
+ ```
