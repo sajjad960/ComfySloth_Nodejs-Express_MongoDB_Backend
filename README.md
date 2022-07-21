@@ -1,7 +1,7 @@
 # ComfySloth - Demo mini-scale ecommerce website (Backend). 
 ### Documentation (Swagger)
   For API documentation, Please run this application and hit this route from any browser. 
- (http://localhost:9000/api-docs) 
+http://localhost:9000/api-docs
  > It's not fully completed yet. 
 ### Features
 * Authentication and Authorization. 
@@ -49,7 +49,7 @@ Note: I am working on production and deployment commad, I will add it as soon as
 ``` 
 npm start
 ```
-### Generate dummy data 
+### Generate dummy data
 For generate dummy data 
  ``` 
  node data/import-data.js 
