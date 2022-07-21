@@ -49,7 +49,8 @@ Note: I am working on production and deployment commad, I will add it as soon as
 ``` 
 npm start
 ```
-### Generate dummy data For generate dummy data 
+### Generate dummy data 
+For generate dummy data 
  ``` 
  node data/import-data.js 
  ```
