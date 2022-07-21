@@ -1,38 +1,3 @@
-# ComfySloth (MVC design pattern)
-[Live Link](https://comfysloth.findsajjad.com/)
-### It's a MERN stack e-commerce website with stripe payment gateway.
-
-# Documentation
-Working on Swagger documentation, Please wait for update. :(
-
-## Features
-* Secure application (Compromised Database, Cross-site-scripting, DOS with body payload, NOSQL query injection, Parameter pollution and more).
-* Geting All Products and Single Product.
-* Signup.
-* Login.
-* Forgot Password.
-* Reset Password (with token expires security)
-* Admin Power(Only backend Implemented).
-* User Login with Token.
-* User subscribe.
-* Stripe payment with session token.
-#### Database
-Local MongoDB
-
-## Installation and start
-Right now, No data gonna get with req. Because Mongoose gonna connect with local MongoDB server.
-
-```
-npm install
-npm start
-```
-Frontend repo link -> https://github.com/sajjad960/Comfysloth_ReactFrontend-Ecommerce
-
-### Deployed Tools
-Cloud Sever (Ubuntu) - Digitalocean<br />
-Webserver - NGINX
-
-
 # ComfySloth - Demo mini-scale ecommerce website (Backend). 
 ### Documentation (Swagger)
   For API documentation, Please run this application and hit this route from any brawser. 
@@ -50,10 +15,31 @@ Webserver - NGINX
 * npm 
 ### Step 1: Clone the repo 
 ``` 
-git clone 
-cd 
+git clone https://github.com/sajjad960/ComfySloth_Nodejs-Express_MongoDB_Backend.git
+cd ComfySloth_Nodejs-Express_MongoDB_Backend
 ``` 
-### Step 2: Start the server 
+### Step 1: Create config.env
+```
+NODE_ENV=development
+PORT=9000
+
+LOCAL_DATABASE=mongodb://localhost:27017/comfy_sloth
+
+JWT_SECRET=comfysloth-own-kktrw-kktrw
+JWT_EXPIRES_IN=10d
+
+EMAIL_USERNAME_APP=your gmail address
+EMAIL_PASSWORD_APP=your gmail app password
+
+# Production host address
+HOST_ADDRESS=https://comfysloth.findsajjad.com
+LOCAL_HOST_ADDRESS=http://localhost:3000
+
+# stripe
+STRIPE_SECRET_KEY=your stripe secret key
+```
+
+### Step 3: Start the server 
 install packages: run this command 
 ``` 
 npm i 
