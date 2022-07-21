@@ -44,7 +44,8 @@ install packages: run this command
 ``` 
 npm i 
 ``` 
-Start this application: Note: I am working on production and deployment commad, I will add it as soon as possible.😊 
+Start this application: 
+Note: I am working on production and deployment commad, I will add it as soon as possible.😊 
 ``` 
 npm start
 ```
