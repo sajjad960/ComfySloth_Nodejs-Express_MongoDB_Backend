@@ -9,7 +9,7 @@ http://localhost:9000/api-docs
 * Payment. 
 * Password Reset. 
 * Little bit application Security. 
-* Swagger Documentation 
+* Swagger API Documentation 
 ### Requirements 
 * Node v14+ 
 * npm 
