@@ -21,6 +21,8 @@ cd ComfySloth_Nodejs-Express_MongoDB_Backend
 ### Step 1: Create config.env
 ```
 NODE_ENV=development
+// for production
+NODE_ENV=production
 PORT=9000
 
 LOCAL_DATABASE=mongodb://localhost:27017/comfy_sloth
@@ -32,7 +34,7 @@ EMAIL_USERNAME_APP=your gmail address
 EMAIL_PASSWORD_APP=your gmail app password
 
 # Production host address
-HOST_ADDRESS=https://comfysloth.findsajjad.com
+HOST_ADDRESS= Your Host Address (https://comfysloth.test.com)
 LOCAL_HOST_ADDRESS=http://localhost:3000
 
 # stripe
@@ -45,7 +47,7 @@ install packages: run this command
 npm i 
 ``` 
 Start this application: <br />
-Note: I am working on production and deployment commad, I will add it as soon as possible.😊 
+Note: I am working on production and deployment command, I will add it as soon as possible.😊 
 ``` 
 npm start
 ```
