@@ -32,7 +32,7 @@ EMAIL_USERNAME_APP=your gmail address
 EMAIL_PASSWORD_APP=your gmail app password
 
 # Production host address
-HOST_ADDRESS= Your Host Address (https://comfysloth.test.com)
+HOST_ADDRESS=Your Host Address (https://comfysloth.test.com)
 LOCAL_HOST_ADDRESS=http://localhost:3000
 
 # stripe
