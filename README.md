@@ -20,9 +20,7 @@ cd ComfySloth_Nodejs-Express_MongoDB_Backend
 ``` 
 ### Step 1: Create config.env
 ```
-NODE_ENV=development
-// for production
-NODE_ENV=production
+NODE_ENV=development/production
 PORT=9000
 
 LOCAL_DATABASE=mongodb://localhost:27017/comfy_sloth
