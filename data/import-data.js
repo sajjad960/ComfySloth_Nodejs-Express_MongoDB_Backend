@@ -4,10 +4,7 @@ let dotenv = require("dotenv");
 const Products = require("../models/productModel");
 
 dotenv.config({ path: "./config.env" });
-const DB = process.env.DATABASE.replace(
-  "<PASSWORD>",
-  process.env.DATABASE_PASSWORD
-);
+const DB = process.env.LOCAL_DATABASE;
 
 mongoose
   .connect(DB, {
